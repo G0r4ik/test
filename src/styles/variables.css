@@ -1,0 +1,21 @@
+:root {
+  --bg: #242424;
+  --surface: #1a1a1a;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.7);
+  --accent: #646cff;
+
+  --table-head: rgba(255, 255, 255, 0.06);
+  --zebra: rgba(255, 255, 255, 0.02);
+
+  --max-width: 1200px;
+  --table-min-width: 640px;
+  --min-width: 360px;
+  --input-width: 40px;
+
+  --radius: 8px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+}
