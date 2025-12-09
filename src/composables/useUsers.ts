@@ -2,9 +2,10 @@ import { ref, computed } from 'vue'
 import type { User, SortKey } from '../types/user'
 import { calculateAge } from '../utils/date'
 import { getUsers } from '../api/users'
+import { useLocalStorage } from '@vueuse/core'
 
 export function useUsers() {
-  const users = ref<User[]>([])
+  const users = useLocalStorage<User[]>('users', [])
   const isLoading = ref(true)
 
   const minAge = ref(0)
@@ -40,7 +41,17 @@ export function useUsers() {
       })
   })
 
+  function updatePhoto(id: number, photo: string) {
+    const targetUser = users.value.find(user => user.id === id)
+    if (targetUser) targetUser.avatar = photo
+  }
+
   async function init() {
+    if (users.value.length > 0) {
+      isLoading.value = false
+      return
+    }
+
     isLoading.value = true
     try {
       const raw = await getUsers()
@@ -58,6 +69,7 @@ export function useUsers() {
     maxAge,
     sortKey,
     sortDirection,
+    updatePhoto,
     sortUser,
     init,
   }

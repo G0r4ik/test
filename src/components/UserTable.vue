@@ -8,7 +8,10 @@ const props = defineProps<{
   sortDirection: number
 }>()
 
-defineEmits<{ (e: 'sort', k: SortKey): void }>()
+const emit = defineEmits<{
+  (e: 'sort', k: SortKey): void
+  (e: 'update-photo', id: number, photo: string): void
+}>()
 
 function getSortIcon(columnKey: SortKey) {
   if (columnKey !== props.sortKey) return ''
@@ -24,6 +27,7 @@ function getSortIcon(columnKey: SortKey) {
           <th class="users__th" @click="$emit('sort', 'id')">
             ID {{ getSortIcon('id') }}
           </th>
+          <th class="users__th">Фото</th>
           <th class="users__th" @click="$emit('sort', 'firstname')">
             Имя {{ getSortIcon('firstname') }}
           </th>
@@ -39,7 +43,11 @@ function getSortIcon(columnKey: SortKey) {
         </tr>
       </thead>
       <tbody>
-        <UserRow v-for="user in users" :user :key="user.id" />
+        <UserRow
+          v-for="user in users"
+          :user
+          :key="user.id"
+          @update-photo="(id, photo) => emit('update-photo', id, photo)" />
       </tbody>
     </table>
   </div>

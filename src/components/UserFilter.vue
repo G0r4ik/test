@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const MIN_AGE = 0
-const MAX_AGE = 150
-
 const minAge = defineModel<number | string>('minAge')
 const maxAge = defineModel<number | string>('maxAge')
+
+const MIN_AGE = 0
+const MAX_AGE = 150
 
 function normalize(
   value: string | number | null | undefined,

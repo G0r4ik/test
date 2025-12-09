@@ -4,6 +4,7 @@ export interface UserDto {
   lastname: string
   email: string
   birthDate: string
+  avatar?: string | null
 }
 
 export interface User extends UserDto {

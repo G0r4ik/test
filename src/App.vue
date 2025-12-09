@@ -12,6 +12,7 @@ const {
   sortDirection,
   sortUser,
   users,
+  updatePhoto,
   init,
 } = useUsers()
 
@@ -26,7 +27,8 @@ onMounted(() => init())
       :users
       :sortKey
       :sortDirection
-      @sort="sortUser" />
+      @sort="sortUser"
+      @update-photo="updatePhoto" />
     <div v-else class="users__loading">Загрузка данных...</div>
   </section>
 </template>
